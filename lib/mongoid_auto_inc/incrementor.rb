@@ -28,7 +28,11 @@ module MongoidAutoInc
       end
 
       def collection
+        if ::Mongoid::VERSION < '3'
+          Mongoid.database[@collection]
+        else
           Mongoid.default_session[@collection]
+        end
       end
 
       def query
