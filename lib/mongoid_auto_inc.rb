@@ -10,9 +10,8 @@ module MongoidAutoInc
       seq_name = "#{self.name.downcase}_#{name}"
       incrementor = MongoidAutoInc::Incrementor.new(options) 
 
-      unless self.type == 0
+      binding.pry
         before_create { self.send("#{name}=", incrementor[seq_name].inc) unless self[name.to_sym].present? } 
-      end
     end
   end
 end
